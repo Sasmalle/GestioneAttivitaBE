@@ -24,8 +24,16 @@ class UtentiDAO {
     postUtente(utentiData) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nome, email, password, sesso, citta } = utentiData;
-            // Esegui l'operazione di inserimento (create) utilizzando il metodo insert di SupabaseClient
             const { data, error } = yield db_1.clientDB.from('Utenti').insert([{ nome, email, password, sesso, citta }]);
+            if (error) {
+                throw new Error(error.message);
+            }
+            return data;
+        });
+    }
+    getUtentiByEmail(utentEmial) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield db_1.clientDB.from('Utenti').select('*').eq('email', utentEmial).single();
             if (error) {
                 throw new Error(error.message);
             }

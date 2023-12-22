@@ -23,11 +23,11 @@ router.get('/eventoId/:idEvento', async (req, res) => {
   }
 });
 
-//API postRecensione
+// // API postRecensione
 // router.post('/', async (req, res) => {
 //   try {
-//     const userId: number = req.user.id; //da capire come gestire in automatico l'id delllo user che fa la recensione
-//     const nuovaRecensione = await recensioniService.postRecensione(req.body);
+//     const : number = req.user.id; //da capire come gestire in automatico l'id delllo user che fa la recensione
+//     const nuovaRecensione = await recensioniService.postRecensione(req.body, userId);
 //     res.status(201).json(nuovaRecensione);
 //   } catch (error) {
 //     res.status(500).json({ error: 'Errore interno del server' });

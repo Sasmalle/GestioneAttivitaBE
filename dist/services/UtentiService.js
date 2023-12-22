@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const UtentiDAO_1 = __importDefault(require("../repositories/UtentiDAO"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const utentiDAO = new UtentiDAO_1.default();
 class UtentiService {
     getUtentiById(utentiId) {
@@ -23,6 +24,16 @@ class UtentiService {
     postUtente(utentiData) {
         return __awaiter(this, void 0, void 0, function* () {
             return utentiDAO.postUtente(utentiData);
+        });
+    }
+    login(credenziali) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const utente = yield utentiDAO.getUtentiByEmail(credenziali.email);
+            if (!utente || utente.password !== credenziali.password) {
+                throw new Error('Credenziali non valide');
+            }
+            const token = jsonwebtoken_1.default.sign({ userId: utente.id }, 'il_tuo_segreto');
+            return token;
         });
     }
 }

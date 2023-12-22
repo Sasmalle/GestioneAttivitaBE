@@ -15,9 +15,16 @@ class UtentiDAO {
 
   async postUtente(utentiData: Utenti){
     const { nome,  email, password, sesso, citta} = utentiData;
-    // Esegui l'operazione di inserimento (create) utilizzando il metodo insert di SupabaseClient
     const { data, error } = await clientDB.from('Utenti').insert([{ nome,email, password, sesso, citta}]);
-    
+    if (error) {
+      throw new Error(error.message);
+    }
+    return data;
+  }
+
+
+  async getUtentiByEmail(utentEmial: Utenti["email"]){
+    const { data, error } = await clientDB.from('Utenti').select('*').eq('email', utentEmial).single();
     if (error) {
       throw new Error(error.message);
     }

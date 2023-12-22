@@ -24,4 +24,16 @@ router.post('/', async (req, res) => {
   }
 });
 
+
+//API login
+router.post('/login', async (req, res) => {
+  try {
+    const token = await utentiService.login(req.body);
+
+    res.status(200).json({ token});
+  } catch (error) {
+    res.status(401).json({ error: 'Credenziali non valide' });
+  }
+});
+
 export default router;
