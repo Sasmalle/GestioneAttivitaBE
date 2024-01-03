@@ -4,6 +4,7 @@ import EventiService from '../services/EventiService';
 const router = express.Router();
 const eventiService = new EventiService();
 
+//API getEvento
 router.get('/:id', async (req, res) => {
   try {
     const evento = await eventiService.getEventiById(parseInt(req.params.id)); // Usa la logica del servizio

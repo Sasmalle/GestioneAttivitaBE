@@ -25,9 +25,12 @@ class RecensioniService {
             return recensioniDAO.getRecensioniByIdEvento(eventoId);
         });
     }
-    postRecensione(redensioniData) {
+    // async postRecensione(redensioniData:any) {
+    //     return recensioniDAO.postRecensione(redensioniData);
+    //   }
+    getRecensioniByvalutazione(valutazione) {
         return __awaiter(this, void 0, void 0, function* () {
-            return recensioniDAO.postRecensione(redensioniData);
+            return recensioniDAO.getRecensioniByvalutazione(valutazione);
         });
     }
 }

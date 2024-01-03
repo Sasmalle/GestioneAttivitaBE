@@ -17,6 +17,7 @@ const express_1 = __importDefault(require("express"));
 const EventiService_1 = __importDefault(require("../services/EventiService"));
 const router = express_1.default.Router();
 const eventiService = new EventiService_1.default();
+//API getEvento
 router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const evento = yield eventiService.getEventiById(parseInt(req.params.id)); // Usa la logica del servizio

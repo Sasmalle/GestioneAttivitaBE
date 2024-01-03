@@ -18,16 +18,26 @@ class RecensioniDAO{
         return data;
     }
 
-    async postRecensione (redensioniData: Recensioni){
-        const { valutazione,  testoRecensione, id_utente, id_evento} = redensioniData;
-        // Esegui l'operazione di inserimento (create) utilizzando il metodo insert di SupabaseClient
-        const { data, error } = await clientDB.from('Recensioni').insert([{ valutazione,testoRecensione, id_utente, id_evento}]);
+    // async postRecensione (redensioniData: Recensioni){
+    //     const { valutazione,  testoRecensione, id_utente, id_evento} = redensioniData;
+    //     // Esegui l'operazione di inserimento (create) utilizzando il metodo insert di SupabaseClient
+    //     const { data, error } = await clientDB.from('Recensioni').insert([{ valutazione,testoRecensione, id_utente, id_evento}]);
         
+    //     if (error) {
+    //       throw new Error(error.message);
+    //     }
+    //     return data;
+    //   }
+
+    async getRecensioniByvalutazione(valutazione: Recensioni["valutazione"]): Promise<Recensioni|null[]> {
+        console.log(valutazione)
+        const { data, error }= await clientDB.from('Recensioni').select('*').eq('valutazione', valutazione);
         if (error) {
-          throw new Error(error.message);
+            throw new Error(error.message);
         }
+        console.log(data);
         return data;
-      }
+    }
 }
 
 export default RecensioniDAO;

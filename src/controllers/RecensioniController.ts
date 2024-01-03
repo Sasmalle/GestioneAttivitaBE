@@ -23,6 +23,17 @@ router.get('/eventoId/:idEvento', async (req, res) => {
   }
 });
 
+//API getRecensionixvalutazione
+router.get('/valutazione/:valutazione', async (req, res) => {
+  try {
+    const recensione = await recensioniService.getRecensioniByvalutazione(parseFloat(req.params.valutazione)); // Usa la logica del servizio
+    res.json(recensione);
+  } catch (error:any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
 // // API postRecensione
 // router.post('/', async (req, res) => {
 //   try {

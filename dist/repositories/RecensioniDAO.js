@@ -29,14 +29,23 @@ class RecensioniDAO {
             return data;
         });
     }
-    postRecensione(redensioniData) {
+    // async postRecensione (redensioniData: Recensioni){
+    //     const { valutazione,  testoRecensione, id_utente, id_evento} = redensioniData;
+    //     // Esegui l'operazione di inserimento (create) utilizzando il metodo insert di SupabaseClient
+    //     const { data, error } = await clientDB.from('Recensioni').insert([{ valutazione,testoRecensione, id_utente, id_evento}]);
+    //     if (error) {
+    //       throw new Error(error.message);
+    //     }
+    //     return data;
+    //   }
+    getRecensioniByvalutazione(valutazione) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { valutazione, testoRecensione, id_utente, id_evento } = redensioniData;
-            // Esegui l'operazione di inserimento (create) utilizzando il metodo insert di SupabaseClient
-            const { data, error } = yield db_1.clientDB.from('Recensioni').insert([{ valutazione, testoRecensione, id_utente, id_evento }]);
+            console.log(valutazione);
+            const { data, error } = yield db_1.clientDB.from('Recensioni').select('*').eq('valutazione', valutazione);
             if (error) {
                 throw new Error(error.message);
             }
+            console.log(data);
             return data;
         });
     }

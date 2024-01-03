@@ -8,9 +8,12 @@ class RecensioniService {
     async getRecensioniByIdEvento(eventoId:number) {
         return recensioniDAO.getRecensioniByIdEvento(eventoId);
       }
-    async postRecensione(redensioniData:any) {
-        return recensioniDAO.postRecensione(redensioniData);
-      }
+    // async postRecensione(redensioniData:any) {
+    //     return recensioniDAO.postRecensione(redensioniData);
+    //   }
+    async getRecensioniByvalutazione(valutazione:number) {
+      return recensioniDAO.getRecensioniByvalutazione(valutazione);
+    }
 }
 
 export default RecensioniService;
